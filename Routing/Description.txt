@@ -1,3 +1,41 @@
 Intra-Domain Routing:
 
-Link-state Routing and Distance-Vector Routing.
+The Internet is composed of many independent networks (called autonomous systems) that must
+cooperate in order for packets to reach their destinations. This necessitates different protocols and
+algorithms for routing packets within autonomous systems, where all routers are operated by the same
+entity, and between autonomous systems, where business agreements and other policy considerations
+affect routing decisions.
+This assignment focuses on intra-domain routing algorithms used by routers within a single autonomous
+system (AS). The goal of intra-domain routing is typically to forward packets along the shortest or lowest
+cost path through the network.
+The need to rapidly handle unexpected router or link failures, changing link costs (usually depending on
+traffic volume), and connections from new routers and clients, motivates the use of distributed
+algorithms for intra-domain routing. In these distributed algorithms, routers start with only their local
+state and must communicate with each other to learn the lowest-cost paths.
+Many intra-domain routing algorithms used in real-world networks fall into one of two categories,
+distance-vector or link-state. In this assignment, you will implement distributed distance-vector and
+link-state routing algorithms in Python and test them with a provided network simulator.
+
+
+Link-State Routing
+● Each router keeps its own link-state and other nodes’ link states it receives. The link state of a
+router contains the links and their weights between the router and its neighbors
+● When a router receives a link-state from its neighbor, it updates the stored link state and the
+forwarding table. Then it broadcasts the link state to other neighbors.
+● Each router broadcasts its own link state to all neighbors when the link state changes. The
+broadcast is also done periodically if no detected change has occurred.
+● A sequence number is added to each link-state message to distinguish between old and new
+link-state messages. Each router stores the sequence number together with the link state. If a
+router receives a link-state message with a smaller sequence number (i.e., an old link-state
+message), the link-state message is simply disregarded.
+
+
+
+Distance-Vector Routing
+● Each router keeps its own distance-vector, which contains its distance to all destinations.
+● When a router receives a distance vector from a neighbor, it updates its own distance vector and
+the forwarding table.
+● Each router broadcasts its own distance vector to all neighbors when the distance vector changes.
+The broadcast is also done periodically if no detected change has occurred.
+● Each router does not broadcast the received distance vector to its neighbors. It only broadcasts
+its own distance vector to its neighbors.
