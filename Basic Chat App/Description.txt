@@ -1,0 +1,33 @@
+The main goal of this assignment is to introduce you to socket programming in the context of
+client-server application architectures.
+
+
+The application server is a multi-threaded server. It listens for new connections from clients at a given host
+and port, accepts them, and handles the messages sent from each client. The server can concurrently connect
+up to MAX_NUM_CLIENTS clients. This means that if MAX_NUM_CLIENTS is 10, at max only 10
+clients can use the service at a time, and for a 11th client to connect, one of the previous 10 clients will need to
+be disconnected. When a client requests to join a server that already has MAX_NUM_CLIENTS, its request
+will be rejected. Furthermore, the server does not store information of disconnected clients. The server must
+handle all possible errors and remain alive until explicitly terminated.
+
+The application client represents the interface for your chat application, that connects to the application server
+with a unique username i.e. no two clients connected to the server at the same time can have the same
+username. It does the following tasks:
+a. Read user input from the standard input stream and send messages to the server, accordingly.
+b. Receive and handle messages from the server
+c. End the connection with the server and shutdown on receiving an error from the server. More information
+on this is given in Section 1.4. Before shutting down, it also shows a message to the user on why the
+connection is being terminated.
+For the application client and application server to communicate with each other over the Internet, we will
+use socket programming.
+
+Sockets allow applications to send and receive messages across a network. Sockets are an Operating
+System mechanism that connects processes to the networking stack. A port number identifies a socket. If
+an application has to send a message, it writes to a specific socket. If an application is expecting to receive
+messages, it listens on a socket for incoming messages. To create a socket, you need to:
+a. specify the transport protocol you will use,
+b. the address of the machine (referred to as IP address), and
+c. the port number you will use to identify the socket.
+In this assignment, your client should connect with the server using the transport protocol, TCP. TCP is a
+reliable transport protocol that sends a message from the sender to the receiver by first establishing an
+explicit connection.
