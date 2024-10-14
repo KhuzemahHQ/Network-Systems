@@ -5,8 +5,6 @@ import time
 import hashlib
 from json import loads, dumps
 
-# Khuzemah Hassan Qazi, 24100092
-
 # I kept the backup for the files in the successor, 
 # so that the files do not even have to be rehashed, and will already be at the 
 # successor when a node fails.
