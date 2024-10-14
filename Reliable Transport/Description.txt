@@ -1,0 +1,26 @@
+Since the Network layer does not make any guarantees regarding the delivery of IP
+packets, a reliable transport protocol is needed to ensure reliable delivery of packets. 
+
+First, let's revise some of the issues that a reliable protocol needs to deal with, and their
+remedies.
+● Packet Loss. Packets may be lost on the Internet. Packets may get lost on the network,
+by e.g. a router dropping incoming packets if it does not have sufficient available
+buffer to store it.
+Remedy: A reliable protocol’s receiver sends acknowledgments for received packets
+back to the sender. In case of no acknowledgment within a timeout value, the sender
+retransmits the packet.
+● Packet Corruption. Factors such as noise/interference on the links can cause packets
+to be corrupted.
+Remedy: The sender appends a checksum value to each packet to detect corruption.
+Upon receiving a packet, a receiver computes the packet’s checksum value and
+compares it to the checksum value included in the packet. If they do not match, the
+receiver will discard the packet and not send an acknowledgment for it.
+● Reordering of Packets. There is a possibility that packets do not reach the receiver in
+the same order as they were sent.
+Remedy: The receiver uses the sequence of packets to find the correct order of incoming
+packets.
+● Duplicate Packets. Dealing with the packet losses can introduce another
+problem—packet duplication. Packet retransmissions can cause a receiver to receive
+the same packet more than once.
+Remedy: The receiver sends an acknowledgment for the duplicate packet and does
+nothing else as it already has a copy of the duplicate packet.
